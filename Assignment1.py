@@ -1,4 +1,3 @@
-#hiii
 
 #1 clean data
 products = [" LAPTOP", "phone ", " Tablet", "CAMERA "]
