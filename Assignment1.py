@@ -1,4 +1,3 @@
-
 #1 clean data
 products = [" LAPTOP", "phone ", " Tablet", "CAMERA "]
 clean_products = list(map(lambda x: x.strip().title(), products))
