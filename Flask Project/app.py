@@ -4,7 +4,7 @@ import sqlite3
 app = Flask(__name__)
 
 
-# ---------------- DATABASE -----------------
+#DATABASE
 def init_db():
     conn = sqlite3.connect("database.db")
     cur = conn.cursor()
@@ -22,7 +22,7 @@ def init_db():
 init_db()
 
 
-# ---------------- ROUTES --------------------
+#ROUTES
 
 @app.route('/')
 def home():
