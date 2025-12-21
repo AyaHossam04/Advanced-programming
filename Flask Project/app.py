@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect
-import sqlite3
+import sqlite3 #sql
 
 app = Flask(__name__)
 
@@ -26,7 +26,7 @@ init_db()
 
 @app.route('/')
 def home():
-    return redirect("/login")
+    return redirect("/signup")
 
 
 @app.route('/signup', methods=['GET', 'POST'])
