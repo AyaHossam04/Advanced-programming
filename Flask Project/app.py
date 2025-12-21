@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 import sqlite3 #sql
 
 app = Flask(__name__)
@@ -18,16 +18,17 @@ def init_db():
     conn.commit()
     conn.close()
 
-
 init_db()
-
 
 #ROUTES
 
 @app.route('/')
-def home():
+def index():
     return redirect("/signup")
 
+@app.route('/home')
+def home():
+    return render_template("home.html")
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -41,11 +42,12 @@ def signup():
             cur.execute("INSERT INTO users (username, password) VALUES (?, ?)",
                         (username, password))
             conn.commit()
+            conn.close()
+            return redirect(url_for('home', username=username))
         except:
+            conn.close()
             return "Username already exists!"
-        conn.close()
-        return redirect("/login")
-
+        
     return render_template("signup.html")
 
 
@@ -63,10 +65,10 @@ def login():
         conn.close()
 
         if user:
-            return f"Welcome, {username}!"
+            return redirect(url_for('home', username=username))
         else:
             return "Invalid username or password!"
-
+        
     return render_template("login.html")
 
 
